@@ -2,12 +2,17 @@
   <dictionary name="cacho">
     <words>
       <w>cacho</w>
+      <w>ccat</w>
+      <w>ohscal</w>
+      <w>ohsumed</w>
       <w>oldid</w>
       <w>oldxid</w>
       <w>oshu</w>
       <w>qrels</w>
       <w>reut</w>
       <w>reuter</w>
+      <w>rlabel</w>
+      <w>vectorizer</w>
     </words>
   </dictionary>
 </component>
