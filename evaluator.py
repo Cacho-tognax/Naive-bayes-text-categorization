@@ -14,7 +14,7 @@ def evaluate(count_matrix, category, categories_count):
         acc_results = []
         for i in range(30):
             x_train, x_test, y_train, y_test = train_test_split(count_matrix, category,
-                                                                train_size=size)  # random_state=42 + i)
+                                                                train_size=size, random_state=42 + i)
             model = MultinomialNB()
             model.fit(x_train, y_train)
             classification = model.predict(x_test)
@@ -28,7 +28,13 @@ def evaluate(count_matrix, category, categories_count):
                 row[j] = 1
                 y_true.append(row)
             y_score = np.asarray(probability_classification)
-            auc_results.append(metrics.roc_auc_score(y_true, y_score, multi_class='ovo')*100)  # for percentages
+            auc_result = 0
+            try:
+                auc_result = metrics.roc_auc_score(y_true, y_score, multi_class='ovo')*100  # for percentages
+            except ValueError:
+                pass
+            if auc_result != 0:
+                auc_results.append(auc_result)
         acc_performance.append([np.mean(acc_results), np.std(acc_results)])
         auc_performance.append([np.mean(auc_results), np.std(auc_results)])
     auc_perf = []
