@@ -46,12 +46,10 @@ def evaluate(count_matrix, category, categories_count):
                 y_true.append(row)
             y_score = np.asarray(probability_classification)
             auc_result = metrics.roc_auc_score(y_true, y_score, multi_class='ovo') * 100  # for percentages
-            '''
             try:
                 auc_result = metrics.roc_auc_score(y_true, y_score, multi_class='ovo')*100  # for percentages
             except ValueError:
                 pass
-            '''
             if auc_result != 0:
                 auc_results.append(auc_result)
         acc_performance.append([np.mean(acc_results), np.std(acc_results)])
@@ -65,11 +63,13 @@ def evaluate(count_matrix, category, categories_count):
     return auc_perf, acc_perf
 
 
-def evaluate_pre_split_no_auc(train_count_matrix, train_category, test_count_matrix, test_category, categories_count):
+def evaluate_pre_split(train_count_matrix, train_category, test_count_matrix, test_category, categories_count):
     train_category = np.array(train_category)
     acc_performance = []
+    auc_performance = []
     for size in training_test_sizes:
         acc_results = []
+        auc_results = []
         for i in range(30):
             x_train, x_test, y_train, y_test = train_test_split(train_count_matrix, train_category,
                                                                 train_size=size - categories_count)
@@ -77,9 +77,28 @@ def evaluate_pre_split_no_auc(train_count_matrix, train_category, test_count_mat
             model = MultinomialNB()
             model.fit(x_train, y_train)
             classification = model.predict(test_count_matrix)
+            probability_classification = model.predict_proba(x_test)
             acc_results.append(np.mean(classification == test_category) * 100)  # for percentages
+            auc_result = 0   # auc result attempt in case it works
+            y_true = []
+            for j in y_test:
+                row = [0] * categories_count
+                row[j] = 1
+                y_true.append(row)
+            y_score = np.asarray(probability_classification)
+            try:
+                auc_result = metrics.roc_auc_score(y_true, y_score, multi_class='ovo') * 100  # for percentages
+            except ValueError:
+                pass
+            if auc_result != 0:
+                auc_results.append(auc_result)
         acc_performance.append([np.mean(acc_results), np.std(acc_results)])
+        auc_performance.append([np.mean(auc_results), np.std(auc_results)])
+
+    auc_perf = []
     acc_perf = []
+    for pair in auc_performance:
+        auc_perf.append([format(pair[0], '.4f'), format(pair[1], '.4f')])
     for pair in acc_performance:
         acc_perf.append([format(pair[0], '.4f'), format(pair[1], '.4f')])
-    return acc_perf
+    return auc_perf, acc_perf
