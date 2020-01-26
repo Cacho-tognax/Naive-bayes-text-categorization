@@ -1,5 +1,5 @@
 For the OHSUMED dataset
-The AUC values with no averaging and their standard deviation for the 5 sizes of training sets are:
+The AUC values with no averaging and their standard deviation for the 4 sizes of training sets are:
 [['78.2941', '2.4182'], ['84.5195', '1.8765'], ['88.3670', '1.0208'], ['91.5895', '0.5499']]
 (If N/A, it means it was not calculable due to unknown issues)
 The accuracy values are:
@@ -8,7 +8,7 @@ The accuracy values are:
 
 
 For the RCV1-V2 Corporate dataset
-The AUC values with no averaging and their standard deviation for the 5 sizes of training sets are:
+The AUC values with no averaging and their standard deviation for the 4 sizes of training sets are:
 ['N/A', 'N/A', 'N/A', 'N/A']
 (If N/A, it means it was not calculable due to unknown issues)
 The accuracy values are:
@@ -17,7 +17,7 @@ The accuracy values are:
 
 
 For the RCV1-V2 Economics dataset
-The AUC values with no averaging and their standard deviation for the 5 sizes of training sets are:
+The AUC values with no averaging and their standard deviation for the 4 sizes of training sets are:
 ['N/A', 'N/A', 'N/A', 'N/A']
 (If N/A, it means it was not calculable due to unknown issues)
 The accuracy values are:
@@ -26,7 +26,7 @@ The accuracy values are:
 
 
 For the RCV1-V2 Government dataset
-The AUC values with no averaging and their standard deviation for the 5 sizes of training sets are:
+The AUC values with no averaging and their standard deviation for the 4 sizes of training sets are:
 ['N/A', 'N/A', 'N/A', 'N/A']
 (If N/A, it means it was not calculable due to unknown issues)
 The accuracy values are:
@@ -35,7 +35,7 @@ The accuracy values are:
 
 
 For the RCV1-V2 Market dataset
-The AUC values with no averaging and their standard deviation for the 5 sizes of training sets are:
+The AUC values with no averaging and their standard deviation for the 4 sizes of training sets are:
 ['N/A', 'N/A', 'N/A', 'N/A']
 (If N/A, it means it was not calculable due to unknown issues)
 The accuracy values are:
@@ -44,7 +44,7 @@ The accuracy values are:
 
 
 For the 20News dataset
-The AUC values with no averaging and their standard deviation for the 5 sizes of training sets are:
+The AUC values with no averaging and their standard deviation for the 4 sizes of training sets are:
 [['55.2366', '5.1324'], ['70.7695', '5.9146'], ['78.3327', '3.2642'], ['84.7805', '2.9898']]
 (If N/A, it means it was not calculable due to unknown issues)
 The accuracy values are:

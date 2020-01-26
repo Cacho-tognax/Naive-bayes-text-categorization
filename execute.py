@@ -4,7 +4,7 @@ import evaluator
 
 def print_results(dataset_name, auc_performance, acc_performance):
     print('For the ' + dataset_name + ' dataset')
-    print('The AUC values with no averaging and their standard deviation for the 5 sizes of training sets are:')
+    print('The AUC values with no averaging and their standard deviation for the 4 sizes of training sets are:')
     print(auc_performance)
     print('(If N/A, it means it was not calculable due to unknown issues)')
     print('The accuracy values are:')
