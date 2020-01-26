@@ -1,0 +1,51 @@
+For the OHSUMED dataset
+The AUC values with no averaging and their standard deviation for the 5 sizes of training sets are:
+[['78.2941', '2.4182'], ['84.5195', '1.8765'], ['88.3670', '1.0208'], ['91.5895', '0.5499']]
+(If N/A, it means it was not calculable due to unknown issues)
+The accuracy values are:
+[['39.9463', '3.9431'], ['49.3001', '3.5789'], ['57.1583', '2.4566'], ['63.6576', '1.2950']]
+
+
+
+For the RCV1-V2 Corporate dataset
+The AUC values with no averaging and their standard deviation for the 5 sizes of training sets are:
+['N/A', 'N/A', 'N/A', 'N/A']
+(If N/A, it means it was not calculable due to unknown issues)
+The accuracy values are:
+[['43.8419', '3.1900'], ['45.1138', '3.8992'], ['48.3342', '3.4236'], ['52.1847', '2.2325']]
+
+
+
+For the RCV1-V2 Economics dataset
+The AUC values with no averaging and their standard deviation for the 5 sizes of training sets are:
+['N/A', 'N/A', 'N/A', 'N/A']
+(If N/A, it means it was not calculable due to unknown issues)
+The accuracy values are:
+[['59.2459', '4.6397'], ['64.2713', '3.9436'], ['69.8487', '1.9980'], ['73.1606', '1.4103']]
+
+
+
+For the RCV1-V2 Government dataset
+The AUC values with no averaging and their standard deviation for the 5 sizes of training sets are:
+['N/A', 'N/A', 'N/A', 'N/A']
+(If N/A, it means it was not calculable due to unknown issues)
+The accuracy values are:
+[['37.2024', '5.1669'], ['43.4759', '4.2997'], ['47.2679', '3.3388'], ['51.0661', '2.0785']]
+
+
+
+For the RCV1-V2 Market dataset
+The AUC values with no averaging and their standard deviation for the 5 sizes of training sets are:
+['N/A', 'N/A', 'N/A', 'N/A']
+(If N/A, it means it was not calculable due to unknown issues)
+The accuracy values are:
+[['81.7485', '4.5864'], ['85.1627', '2.3556'], ['87.7197', '1.6855'], ['90.1340', '1.3261']]
+
+
+
+For the 20News dataset
+The AUC values with no averaging and their standard deviation for the 5 sizes of training sets are:
+[['55.2366', '5.1324'], ['70.7695', '5.9146'], ['78.3327', '3.2642'], ['84.7805', '2.9898']]
+(If N/A, it means it was not calculable due to unknown issues)
+The accuracy values are:
+[['17.1159', '4.2994'], ['24.1870', '6.1104'], ['30.4833', '5.3925'], ['39.9195', '6.4865']]

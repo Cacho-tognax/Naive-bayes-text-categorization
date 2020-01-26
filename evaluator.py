@@ -53,10 +53,16 @@ def evaluate(count_matrix, category, categories_count):
             if auc_result != 0:
                 auc_results.append(auc_result)
         acc_performance.append([np.mean(acc_results), np.std(acc_results)])
-        auc_performance.append([np.mean(auc_results), np.std(auc_results)])
+        if len(auc_results) == 0:
+            auc_performance.append('N/A')
+        else:
+            auc_performance.append([np.mean(auc_results), np.std(auc_results)])
     auc_perf = []
     for pair in auc_performance:
-        auc_perf.append([format(pair[0], '.4f'), format(pair[1], '.4f')])
+        if pair == 'N/A':
+            auc_perf.append('N/A')
+        else:
+            auc_perf.append([format(pair[0], '.4f'), format(pair[1], '.4f')])
     acc_perf = []
     for pair in acc_performance:
         acc_perf.append([format(pair[0], '.4f'), format(pair[1], '.4f')])
@@ -93,12 +99,18 @@ def evaluate_pre_split(train_count_matrix, train_category, test_count_matrix, te
             if auc_result != 0:
                 auc_results.append(auc_result)
         acc_performance.append([np.mean(acc_results), np.std(acc_results)])
-        auc_performance.append([np.mean(auc_results), np.std(auc_results)])
+        if len(auc_results) == 0:
+            auc_performance.append('N/A')
+        else:
+            auc_performance.append([np.mean(auc_results), np.std(auc_results)])
 
     auc_perf = []
-    acc_perf = []
     for pair in auc_performance:
-        auc_perf.append([format(pair[0], '.4f'), format(pair[1], '.4f')])
+        if pair == 'N/A':
+            auc_perf.append('N/A')
+        else:
+            auc_perf.append([format(pair[0], '.4f'), format(pair[1], '.4f')])
+    acc_perf = []
     for pair in acc_performance:
         acc_perf.append([format(pair[0], '.4f'), format(pair[1], '.4f')])
     return auc_perf, acc_perf
