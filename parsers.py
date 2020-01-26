@@ -3,21 +3,9 @@ import os
 from scipy.sparse import csc_matrix
 
 from nltk.tokenize import word_tokenize
-from nltk.stem import PorterStemmer
 from sklearn.feature_extraction.text import CountVectorizer
 
-from bs4 import BeautifulSoup
-
-from preprocessor import rcv1_preprocess
-
-ps = PorterStemmer()
-with open('SMART stop words') as small_file:  # getting stop words for later
-    words = word_tokenize(small_file.read())
-    words_stemmed = []
-    for word in words:
-        words_stemmed.append(ps.stem(word))
-        words_stemmed.append(word)
-    stop_words_tuple = tuple(words_stemmed)
+from preprocessor import news20_preprocess
 
 
 def text_data_parser(name):
@@ -53,7 +41,7 @@ def text_data_parser(name):
     else:
         return 0, 0, 0
 
-
+'''
 def rcv1_parser_old(macro_category):  # we have to redo all this, I was using the old dataset.
     category_list = dict()
     with open('./Rcv1/rcv1-topics') as file:
@@ -78,7 +66,7 @@ def rcv1_parser_old(macro_category):  # we have to redo all this, I was using th
             data_sets.append(file)
     for data_set in data_sets:
         with open('./Rcv1/' + data_set, errors='ignore') as file:  # hand to add errors='ignore', there's a corrupted
-            # character somehwere todo use training set
+            # character somewhere
             print('working with ' + data_set + ' now')
             soup = BeautifulSoup(file, 'html.parser')
             for document in soup.find_all('reuters'):
@@ -93,6 +81,7 @@ def rcv1_parser_old(macro_category):  # we have to redo all this, I was using th
     vectorizer = CountVectorizer(stop_words=stop_words_tuple)
     count_matrix = vectorizer.fit_transform(all_text)
     return count_matrix, document_category, category_list
+'''
 
 
 def rcv1_parser(macro_category):
@@ -136,6 +125,43 @@ def rcv1_parser(macro_category):
     train_count_matrix = vectorizer.fit_transform(all_trains)
     test_count_matrix = vectorizer.transform(all_tests)
     return train_count_matrix, train_document_category, test_count_matrix, test_document_category, category_list
+
+
+def news20_parser():
+    category_list = dict()
+    counter = 0
+    for topic in os.listdir('./20news-bydate-train/'):
+        category_list[topic] = counter
+        counter += 1
+    all_trains = []  # here we start parsing the documents
+    all_tests = []
+    train_document_category = []
+    test_document_category = []
+    for topic in category_list:
+        topic_no = category_list[topic]
+        for file in os.listdir('./20news-bydate-train/' + topic):
+            file_name = './20news-bydate-train/' + topic + '/' + file
+            processed = parse_20news(file_name)
+            all_trains.append(processed)
+            train_document_category.append(topic_no)
+    for topic in category_list:
+        topic_no = category_list[topic]
+        for file in os.listdir('./20news-bydate-test/' + topic):
+            file_name = './20news-bydate-test/' + topic + '/' + file
+            processed = parse_20news(file_name)
+            all_tests.append(processed)
+            test_document_category.append(topic_no)
+    vectorizer = CountVectorizer()
+    train_count_matrix = vectorizer.fit_transform(all_trains)
+    test_count_matrix = vectorizer.transform(all_tests)
+    return train_count_matrix, train_document_category, test_count_matrix, test_document_category, category_list
+
+
+def parse_20news(file_name):
+    words = ''
+    with open(file_name, errors='ignore') as file:
+        words = file.read()
+    return news20_preprocess(words)
 
 
 def parse_lyrl(file_name, category):
